@@ -37,4 +37,9 @@ public class NoApplicationTests {
     public void test003(){
         log.info("测试只提交github");
     }
+
+    @Test
+    public void test004(){
+        log.info("都提交");
+    }
 }
