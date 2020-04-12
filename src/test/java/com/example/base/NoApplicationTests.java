@@ -32,4 +32,9 @@ public class NoApplicationTests {
     public void test002(){
         log.info("这是为什么呢？");
     }
+
+    @Test
+    public void test003(){
+        log.info("测试只提交github");
+    }
 }
