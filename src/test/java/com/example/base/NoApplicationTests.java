@@ -1,6 +1,7 @@
 package com.example.base;
 
 import com.alibaba.excel.EasyExcel;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author: Jagger
  * @create: 2020/4/8 19:36
  */
+@Slf4j
 public class NoApplicationTests {
 
     @Test
@@ -24,5 +26,10 @@ public class NoApplicationTests {
         excelModel1.setEmail("295669145@qq.com");
         data.add(excelModel1);
         EasyExcel.write(fileName).withTemplate(templateFileName).sheet().doWrite(data);
+    }
+
+    @Test
+    public void test002(){
+        log.info("这是为什么呢？");
     }
 }
