@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 数据库驱动包位置 -->
+	<classPathEntry
+		location="D:\Java\maven\repository-3.6.3\com\oracle\ojdbc14\10.2.0.4.0\ojdbc14-10.2.0.4.0.jar" />
+	<context id="default" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库链接URL、用户名、密码 -->
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/my_test02?characterEncoding=utf8" 
+			userId="root" password="Aa1234567890"> -->
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@oracle1.test.baiwang-inner.com:1521:testdb1"
+			userId="asiapacificjx" password="asiapacificjx">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator
+			targetPackage="com.baiwang.customize.entity.jx"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+			<!-- 是否对modal添加构造函数 -->
+			<property name="constructorBased" value="false"/>
+		</javaModelGenerator>
+		<!-- 生成的映射文件包名和位置 -->
+		<sqlMapGenerator
+			targetPackage="jx"
+			targetProject="src/main/resources/mappers/">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.baiwang.customize.dao.mapper.jx"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+		<table tableName="t_s_collect_ticket" domainObjectName="CollectTicketDto"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />
+		<table tableName="t_scm_vat_main" domainObjectName="ScmVatMainDto"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />
+		<table tableName="t_scm_vat_vehicle" domainObjectName="ScmVatVehicleDto"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />
+		<table tableName="t_scm_vat_used_car" domainObjectName="ScmVatUsedCarDto"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false" />
+
+
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.base.dao.ExpressMapper">
+    <resultMap id="BaseResultMap" type="express">
+        <result property="id" column="id"/>
+        <result property="expressCode" column="express_code"/>
+        <result property="expressName" column="express_name"/>
+    </resultMap>
+
+    <select id="selectById" parameterType="long" resultMap="BaseResultMap">
+        SELECT * FROM t_express WHERE id=#{id}
+    </select>
+
+    <insert id="insertExpress" parameterType="express">
+        INSERT INTO t_express (id) VALUES (#{id})
+    </insert>
+
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM t_express WHERE id=#{id}
+    </delete>
+</mapper>
