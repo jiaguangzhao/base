@@ -5,6 +5,7 @@ import com.example.base.model.dto.ExpressDto;
 import com.example.base.service.ExpressService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ public class ExpressController {
     @Autowired
     private ExpressService expressService;
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody  ExpressDto getById(@PathVariable Long id) {
         ExpressDto expressDto = expressService.selectById(id);
         log.info("expressDto:{}.", expressDto);
