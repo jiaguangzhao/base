@@ -18,6 +18,6 @@
     </insert>
 
     <delete id="deleteById" parameterType="long">
-        DELETE FROM t_express WHERE id=#{id}
+        DELETE FROM t_express WHERE id = #{id}
     </delete>
 </mapper>

@@ -6,4 +6,8 @@
     <settings>
         <setting name="jdbcTypeForNull" value="NULL"/>
     </settings>
+    
+    <plugins>
+        <plugin interceptor="com.example.base.interceptor.MybatisPrintSqlInterceptor"></plugin>
+    </plugins>
 </configuration>

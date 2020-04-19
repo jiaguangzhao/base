@@ -20,6 +20,6 @@ public class DemoQuartzJob extends QuartzJobBean {
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        log.info("jia:{}.", LocalDateTime.now());
+//        log.info("jia:{}.", LocalDateTime.now());
     }
 }
