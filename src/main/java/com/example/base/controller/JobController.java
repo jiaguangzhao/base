@@ -1,10 +1,10 @@
 package com.example.base.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.TriggerKey;
+//import org.quartz.JobKey;
+//import org.quartz.Scheduler;
+//import org.quartz.SchedulerException;
+//import org.quartz.TriggerKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author: Jagger
  * @create: 2020/3/16 14:59
  */
+/**
 @Slf4j
 @Controller
 @RequestMapping(path = "/quartz")
@@ -79,11 +80,11 @@ public class JobController {
         return scheduler;
     }
 
-    /**
+    /
      * 删除 job 会删除数据库里的job和trigger
      * @param jobName
      * @return
-     */
+     *
     @GetMapping(path = "/delete/{jobName}")
     public @ResponseBody
     Scheduler deleteJob(@PathVariable String jobName) {
@@ -103,3 +104,4 @@ public class JobController {
         return scheduler;
     }
 }
+*/

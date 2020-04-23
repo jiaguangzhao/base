@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -41,6 +42,13 @@ public class DemoJobHandler {
         for (int i = 0; i < 5; i++) {
             log.info("什么几把：time【{}】i【{}】。", localDateTime, i);
             TimeUnit.SECONDS.sleep(3);
+        }
+        int i = new Random().nextInt(100);
+        if (i < 20) {
+            int j = 0;
+            j = i / j;
+        } else if (i < 40) {
+            return new ReturnT<>(i, "我爱你吗：" + i);
         }
         return ReturnT.SUCCESS;
     }

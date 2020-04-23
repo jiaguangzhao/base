@@ -3,7 +3,6 @@ package com.example.base.service.impl;
 import com.example.base.dao.ExpressMapper;
 import com.example.base.model.dto.ExpressDto;
 import com.example.base.service.ExpressService;
-import org.quartz.JobDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,6 @@ public class ExpressServiceImpl implements ExpressService {
 
     @Override
     public ExpressDto selectById(Long id) {
-        JobDetail jobDetail;
         return expressMapper.selectById(id);
     }
 }
