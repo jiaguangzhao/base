@@ -26,7 +26,7 @@ public class DemoJobHandler {
     public ReturnT<String> demoJobHandler(String param) throws Exception {
         LocalDateTime localDateTime = LocalDateTime.now();
         for (int i = 0; i < 5; i++) {
-            log.info("我操了个DJ：time【{}】i【{}】。", localDateTime, i);
+            log.info("我了个DJ：time【{}】i【{}】。", localDateTime, i);
             TimeUnit.SECONDS.sleep(5);
         }
         return ReturnT.SUCCESS;
@@ -40,10 +40,11 @@ public class DemoJobHandler {
     public ReturnT<String> demoJobHandler02(String param) throws Exception {
         LocalDateTime localDateTime = LocalDateTime.now();
         for (int i = 0; i < 5; i++) {
-            log.info("什么几把：time【{}】i【{}】。", localDateTime, i);
+            log.info("什么：time【{}】i【{}】。", localDateTime, i);
             TimeUnit.SECONDS.sleep(3);
         }
         int i = new Random().nextInt(100);
+        log.info("随机i={}.", i);
         if (i < 20) {
             int j = 0;
             j = i / j;
