@@ -1,9 +1,11 @@
 package com.example.base.running.job;
 
+import com.example.base.service.ExpressService;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.log.XxlJobLogger;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -19,6 +21,9 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class DemoJobHandler {
 
+    @Autowired
+    private ExpressService expressService;
+
     /**
      * 1、简单任务示例（Bean模式）
      */
@@ -27,6 +32,7 @@ public class DemoJobHandler {
         LocalDateTime localDateTime = LocalDateTime.now();
         for (int i = 0; i < 5; i++) {
             log.info("我了个DJ：time【{}】i【{}】。", localDateTime, i);
+            expressService.selectById(Long.valueOf(i));
             TimeUnit.SECONDS.sleep(5);
         }
         return ReturnT.SUCCESS;

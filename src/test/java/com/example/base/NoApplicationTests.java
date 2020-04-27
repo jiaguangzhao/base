@@ -45,4 +45,9 @@ public class NoApplicationTests {
         log.info("都提交");
         StringRedisTemplate stringRedisTemplate;
     }
+
+    @Test
+    public void test005(){
+
+    }
 }
