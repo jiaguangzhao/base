@@ -142,21 +142,30 @@ CREATE TABLE QRTZ_LOCKS
     LOCK_NAME  VARCHAR(40) NOT NULL,
     PRIMARY KEY (SCHED_NAME,LOCK_NAME)
 );
+CREATE TABLE qrtz_triggers_ext (
+  trigger_name VARCHAR (200) NOT NULL COMMENT 'trigger名称',
+  status INT COMMENT '状态：0暂停10启动',
+  gmt_create DATETIME COMMENT '创建时间',
+  gmt_modified TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (trigger_name)
+) COMMENT = '触发器状态表';
 
-CREATE TABLE `flyway_schema_history` (
-                                                      `installed_rank` INT NOT NULL,
-                                                      `version` VARCHAR(50),
-                                                      `description` VARCHAR(200) NOT NULL,
-                                                      `type` VARCHAR(20) NOT NULL,
-                                                      `script` VARCHAR(1000) NOT NULL,
-                                                      `checksum` INT,
-                                                      `installed_by` VARCHAR(100) NOT NULL,
-                                                      `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                                      `execution_time` INT NOT NULL,
-                                                      `success` BOOL NOT NULL,
-                                                      CONSTRAINT `flyway_schema_history_pk` PRIMARY KEY (`installed_rank`)
+
+
+CREATE TABLE flyway_schema_history (
+                                                      installed_rank INT NOT NULL,
+                                                      version VARCHAR(50),
+                                                      description VARCHAR(200) NOT NULL,
+                                                      type VARCHAR(20) NOT NULL,
+                                                      script VARCHAR(1000) NOT NULL,
+                                                      checksum INT,
+                                                      installed_by VARCHAR(100) NOT NULL,
+                                                      installed_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                                      execution_time INT NOT NULL,
+                                                      success BOOL NOT NULL,
+                                                      CONSTRAINT flyway_schema_history_pk PRIMARY KEY (installed_rank)
 ) ENGINE=INNODB;
 
-INSERT INTO `flyway_schema_history` (installed_rank, VERSION, description, TYPE, script, CHECKSUM, installed_by, installed_on, execution_time, success)
+INSERT INTO flyway_schema_history (installed_rank, VERSION, description, TYPE, script, CHECKSUM, installed_by, installed_on, execution_time, success)
 SELECT     1 AS "installed_rank",     '20200316102931' AS "version",     '<< Flyway Baseline >>' AS "description",     'BASELINE' AS "type",     '<< Flyway Baseline >>' AS "script",     NULL AS "checksum",     'front_lzlj' AS "installed_by",     CURRENT_TIMESTAMP AS "installed_on",     0 AS "execution_time",     TRUE AS "success";
 

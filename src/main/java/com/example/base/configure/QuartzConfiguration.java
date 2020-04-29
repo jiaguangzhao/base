@@ -2,8 +2,16 @@ package com.example.base.configure;
 
 import com.example.base.running.job.DemoQuartzJob;
 import org.quartz.*;
+import org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.quartz.QuartzJobBean;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.web.client.RestTemplate;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @description:
@@ -22,5 +30,32 @@ public class QuartzConfiguration {
     public Trigger demoTrigger(){
         SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).repeatForever();
         return TriggerBuilder.newTrigger().forJob(demoJob()).withIdentity("demoTrigger").withSchedule(simpleScheduleBuilder).build();
+    }
+
+    public static void main(String[] args) {
+        try {
+            Class.forName("com.example.base.running.job.DemoQuartzJob");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //SchedulerFactoryBean schedulerFactoryBean;
+        //afterPropertiesSet(); -- registerJobsAndTriggers();
+        // getScheduler().addJob(jobDetail, true);
+        try {
+            JobBuilder.newJob((Class<QuartzJobBean>) Class.forName("com.example.base.running.job.DemoQuartzJob")).withIdentity("demoQuartzJob").storeDurably().build();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        String url = "https://swy.lzlj.com/oauth2/authorize?username=jagger&password=123456&userType=B&client_id=BWd486730b9faa4a70b760730c636e68&response_type=code&redirect_uri=http%3a%2f%2fswy.lzlj.com%2foauth2%2fgetToken";
+        RestTemplate restTemplate = new RestTemplate();
+        String response = restTemplate.postForEntity(url, null, String.class).getBody();
+        System.out.println(response);
+
+//        try {
+//            String url = URLDecoder.decode("http://swy.lzlj.com/oauth2/authorize?username=jagger&password=123456&userType=B&client_id=BWd486730b9faa4a70b760730c636e68&response_type=code&redirect_uri=http%3a%2f%2fswy.lzlj.com%2foauth2%2fgetToken", StandardCharsets.UTF_8.name());
+//            System.out.println(url);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
     }
 }

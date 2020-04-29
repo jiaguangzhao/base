@@ -17,4 +17,14 @@
            overflowToDisk="true"
            diskPersistent="true"
            diskExpiryThreadIntervalSeconds="10"/>
+
+
+    <cache name="cache_trigger"
+           maxElementsInMemory="10000"
+           eternal="true"
+           timeToIdleSeconds="120"
+           timeToLiveSeconds="120"
+           overflowToDisk="true"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="10"/>
 </ehcache>

@@ -1,13 +1,13 @@
 package com.example.base.running.job;
 
-import com.example.base.service.ExpressService;
+import com.example.base.dao.QrtzTriggerDtoMapper;
+import com.example.base.model.dto.QrtzTriggerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.time.LocalDateTime;
 import java.util.Random;
@@ -33,15 +33,17 @@ import java.util.Random;
 @DisallowConcurrentExecution
 public class DemoQuartzJob extends AbstractQuartzJobBean {
 
+    @Autowired
+    private QrtzTriggerDtoMapper qrtzTriggerDtoMapper;
+
     @Override
-    protected boolean interrupt(JobExecutionContext context) throws JobExecutionException {
-        int randomInt = new Random().nextInt(100);
-        JobDataMap jobDataMap = context.getJobDetail().getJobDataMap();
-        if (randomInt > 50) {
-            jobDataMap.put("randomInt", randomInt);
+    public boolean isExecute(JobExecutionContext context) throws JobExecutionException {
+        String triggerName = context.getTrigger().getKey().getName();
+        QrtzTriggerDto qrtzTrigger = qrtzTriggerDtoMapper.selectByTriggerName(triggerName);
+
+        if (qrtzTrigger.getStatus() !=null && qrtzTrigger.getStatus() == 10) {
             return true;
         } else {
-            jobDataMap.put("randomInt", randomInt);
             return false;
         }
     }
