@@ -1,7 +1,9 @@
 package com.example.base.configure;
 
 import com.example.base.running.job.DemoQuartzJob;
+import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import org.quartz.*;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,16 +23,17 @@ import java.nio.charset.StandardCharsets;
 @Configuration
 public class QuartzConfiguration {
 
-    @Bean
-    public JobDetail demoJob(){
-        return JobBuilder.newJob(DemoQuartzJob.class).withIdentity("demoQuartzJob").storeDurably().build();
-    }
-
-    @Bean
-    public Trigger demoTrigger(){
-        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).repeatForever();
-        return TriggerBuilder.newTrigger().forJob(demoJob()).withIdentity("demoTrigger").withSchedule(simpleScheduleBuilder).build();
-    }
+//    @Bean
+//    public JobDetail demoJob(){
+//        return JobBuilder.newJob(DemoQuartzJob.class).withIdentity("demoQuartzJob").storeDurably().build();
+//    }
+//
+//    @Bean
+//    public Trigger demoTrigger(){
+//        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).repeatForever();
+//        Trigger trigger = TriggerBuilder.newTrigger().forJob(demoJob()).withIdentity("demoTrigger").withSchedule(simpleScheduleBuilder).build();
+//        return trigger;
+//    }
 
     public static void main(String[] args) {
         try {
@@ -51,11 +54,15 @@ public class QuartzConfiguration {
         String response = restTemplate.postForEntity(url, null, String.class).getBody();
         System.out.println(response);
 
+        QuartzAutoConfiguration quartzAutoConfiguration;
+
 //        try {
 //            String url = URLDecoder.decode("http://swy.lzlj.com/oauth2/authorize?username=jagger&password=123456&userType=B&client_id=BWd486730b9faa4a70b760730c636e68&response_type=code&redirect_uri=http%3a%2f%2fswy.lzlj.com%2foauth2%2fgetToken", StandardCharsets.UTF_8.name());
 //            System.out.println(url);
 //        } catch (UnsupportedEncodingException e) {
 //            e.printStackTrace();
 //        }
+
+
     }
 }

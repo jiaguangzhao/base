@@ -11,7 +11,7 @@
     />
     <cache name="cache_express"
            maxElementsInMemory="10000"
-           eternal="true"
+           eternal="false"
            timeToIdleSeconds="120"
            timeToLiveSeconds="120"
            overflowToDisk="true"
@@ -21,7 +21,7 @@
 
     <cache name="cache_trigger"
            maxElementsInMemory="10000"
-           eternal="true"
+           eternal="false"
            timeToIdleSeconds="120"
            timeToLiveSeconds="120"
            overflowToDisk="true"
