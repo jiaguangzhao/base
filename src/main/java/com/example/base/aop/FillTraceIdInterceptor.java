@@ -1,4 +1,4 @@
-package com.example.base.interceptor;
+package com.example.base.aop;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;

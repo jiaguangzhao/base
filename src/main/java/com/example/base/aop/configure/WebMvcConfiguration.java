@@ -1,6 +1,6 @@
-package com.example.base.configure;
+package com.example.base.aop.configure;
 
-import com.example.base.interceptor.FillTraceIdInterceptor;
+import com.example.base.aop.FillTraceIdInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

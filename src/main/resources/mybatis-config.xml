@@ -9,7 +9,7 @@
 
     <!--
 <plugins>
-    <plugin interceptor="com.example.base.interceptor.MybatisPrintSqlInterceptor"></plugin>
+    <plugin interceptor="com.example.base.aop.MybatisPrintSqlInterceptor"></plugin>
 </plugins>
     -->
 

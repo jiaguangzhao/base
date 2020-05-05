@@ -6,13 +6,13 @@
 	<property name="LOG_SYSTEM" value="front-base" />
 	<property name="LOG_HOME" value="${APP_HOME}/logs/front-base" />
 
-	<conversionRule conversionWord="msg" converterClass="com.example.base.common.converter.CustomMessageConverter" />
+	<conversionRule conversionWord="msg" converterClass="com.example.base.aop.LogbackMessageConverter" />
 
 	<!-- 控制台输出 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<!--格式化输出：%d表示日期，%thread表示线程名，%level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
-			<pattern>[%X{traceId}] %d{yyyy-MM-dd HH:mm:ss.SSS} %level ${LOG_SYSTEM} [%logger{100}_%M] - %msg%n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %level ${LOG_SYSTEM} [%logger{100}_%M] [%X{traceId}] - %msg%n</pattern>
 		</encoder>
 	</appender>
 	<!-- 按照每天生成日志文件 -->

@@ -1,16 +1,14 @@
-package com.example.base.running.job;
+package com.example.base.controller.job;
 
-import com.example.base.dao.QrtzTriggerDtoMapper;
-import com.example.base.model.dto.QrtzTriggerDto;
+import com.example.base.service.QuartzService;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.DisallowConcurrentExecution;
-import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.time.LocalDateTime;
-import java.util.Random;
 
 /**
  * @description:
@@ -31,25 +29,14 @@ import java.util.Random;
  */
 @Slf4j
 @DisallowConcurrentExecution
-public class DemoQuartzJob extends AbstractQuartzJobBean {
+public class DemoQuartzJob extends QuartzJobBean {
 
     @Autowired
-    private QrtzTriggerDtoMapper qrtzTriggerDtoMapper;
+    private QuartzService quartzService;
 
     @Override
-    public boolean isExecute(JobExecutionContext context) throws JobExecutionException {
-        String triggerName = context.getTrigger().getKey().getName();
-        QrtzTriggerDto qrtzTrigger = qrtzTriggerDtoMapper.selectByTriggerName(triggerName);
-
-        if (qrtzTrigger.getStatus() !=null && qrtzTrigger.getStatus() == 10) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    protected void executeInternalActual(JobExecutionContext context) throws JobExecutionException {
+    protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
+        quartzService.selectAll();
         log.info("jia:{}.", LocalDateTime.now());
     }
 }

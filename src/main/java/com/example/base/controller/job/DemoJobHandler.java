@@ -1,4 +1,4 @@
-package com.example.base.running.job;
+package com.example.base.controller.job;
 
 import com.example.base.service.ExpressService;
 import com.xxl.job.core.biz.model.ReturnT;

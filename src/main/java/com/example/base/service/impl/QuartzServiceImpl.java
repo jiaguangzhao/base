@@ -4,7 +4,7 @@ import com.example.base.dao.QrtzTriggerDtoMapper;
 import com.example.base.model.dto.QrtzTriggerDto;
 import com.example.base.service.QuartzService;
 import com.github.pagehelper.PageHelper;
-import com.purgerteam.log.trace.starter.TraceAutoConfiguration;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @description:
@@ -21,6 +20,7 @@ import java.util.UUID;
  * @create: 2020/4/27 17:19
  */
 @Service
+@Slf4j
 public class QuartzServiceImpl implements QuartzService {
 
     @Autowired
@@ -32,8 +32,7 @@ public class QuartzServiceImpl implements QuartzService {
     @Override
     public List<QrtzTriggerDto> selectAll() {
 //        String uuid = UUID.randomUUID().toString();
-        qrtzTriggerDtoMapper.selectByTriggerName("Jagger-召召穆穆");
-        TraceAutoConfiguration traceAutoConfiguration;
+        log.info("service:{}, selectAll()....");
         PageHelper.startPage(1, 20);
         return qrtzTriggerDtoMapper.selectAll();
     }

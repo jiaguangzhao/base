@@ -1,2 +1,2 @@
 # Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.example.base.configure.MybatisAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.example.base.aop.configure.MybatisAutoConfiguration

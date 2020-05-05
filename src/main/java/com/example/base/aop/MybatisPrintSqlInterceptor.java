@@ -1,4 +1,4 @@
-package com.example.base.interceptor;
+package com.example.base.aop;
 
 import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;

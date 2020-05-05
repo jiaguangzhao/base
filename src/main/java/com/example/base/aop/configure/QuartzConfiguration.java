@@ -1,19 +1,12 @@
-package com.example.base.configure;
+package com.example.base.aop.configure;
 
-import com.example.base.running.job.DemoQuartzJob;
-import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
+import com.example.base.controller.job.DemoQuartzJob;
 import org.quartz.*;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.QuartzJobBean;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 /**
  * @description:
@@ -23,21 +16,21 @@ import java.nio.charset.StandardCharsets;
 @Configuration
 public class QuartzConfiguration {
 
-//    @Bean
-//    public JobDetail demoJob(){
-//        return JobBuilder.newJob(DemoQuartzJob.class).withIdentity("demoQuartzJob").storeDurably().build();
-//    }
+    @Bean
+    public JobDetail demoJob(){
+        return JobBuilder.newJob(DemoQuartzJob.class).withIdentity("demoQuartzJob").storeDurably().build();
+    }
 //
-//    @Bean
-//    public Trigger demoTrigger(){
-//        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).repeatForever();
-//        Trigger trigger = TriggerBuilder.newTrigger().forJob(demoJob()).withIdentity("demoTrigger").withSchedule(simpleScheduleBuilder).build();
-//        return trigger;
-//    }
+    @Bean
+    public Trigger demoTrigger(){
+        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).repeatForever();
+        Trigger trigger = TriggerBuilder.newTrigger().forJob(demoJob()).withIdentity("demoTrigger").withSchedule(simpleScheduleBuilder).build();
+        return trigger;
+    }
 
     public static void main(String[] args) {
         try {
-            Class.forName("com.example.base.running.job.DemoQuartzJob");
+            Class.forName("com.example.base.controller.job.DemoQuartzJob");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -45,7 +38,7 @@ public class QuartzConfiguration {
         //afterPropertiesSet(); -- registerJobsAndTriggers();
         // getScheduler().addJob(jobDetail, true);
         try {
-            JobBuilder.newJob((Class<QuartzJobBean>) Class.forName("com.example.base.running.job.DemoQuartzJob")).withIdentity("demoQuartzJob").storeDurably().build();
+            JobBuilder.newJob((Class<QuartzJobBean>) Class.forName("com.example.base.controller.job.DemoQuartzJob")).withIdentity("demoQuartzJob").storeDurably().build();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

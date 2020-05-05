@@ -1,4 +1,4 @@
-package com.example.base.configure;
+package com.example.base.aop.configure;
 
 import feign.Logger;
 import org.springframework.cloud.openfeign.EnableFeignClients;

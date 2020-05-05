@@ -1,4 +1,4 @@
-package com.example.base.common.converter;
+package com.example.base.aop;
 
 import ch.qos.logback.classic.pattern.MessageConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  * @author: Jagger
  * @create: 2020/2/26 10:22
  */
-public class CustomMessageConverter extends MessageConverter {
+public class LogbackMessageConverter extends MessageConverter {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -52,17 +52,6 @@ public class CustomMessageConverter extends MessageConverter {
         } catch (Exception e) {
             e.printStackTrace();
             return super.convert(event);
-        }
-    }
-
-    public static void main(String[] args) {
-        String string = "http://10.0.48.11:22580/post?method=baiwang.image.file.upload&requestId=223d1a65-d135-4b80-b3cb-74d00e8aafc0&version=1.0";
-        String[] params = string.split("\\?")[1].split("&");
-        for (int i = 0; i < params.length; i++) {
-            String[] param = params[i].split("=");
-            if ("method".equals(param[0])) {
-                System.out.println(param[1]);
-            }
         }
     }
 }

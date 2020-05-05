@@ -1,25 +1,28 @@
-package com.example.base.listener;
+package com.example.base.aop;
 
-import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.quartz.Trigger;
 import org.quartz.TriggerListener;
+import org.slf4j.MDC;
+
+import java.util.UUID;
 
 /**
  * @description:
  * @author: Jagger
- * @create: 2020/4/28 11:44
+ * @create: 2020/5/5 19:46
  */
-@Slf4j
-public class DemoTriggerListener implements TriggerListener {
+public class FillTraceIdTriggerListener implements TriggerListener {
 
     @Override
     public String getName() {
-        return "DemoTriggerListener";
+        return "com.example.base.aop.FillTraceIdTriggerListener";
     }
 
     @Override
     public void triggerFired(Trigger trigger, JobExecutionContext context) {
+        String traceId = UUID.randomUUID().toString().replaceAll("-", "");
+        MDC.put("traceId", traceId);
     }
 
     @Override
@@ -29,9 +32,11 @@ public class DemoTriggerListener implements TriggerListener {
 
     @Override
     public void triggerMisfired(Trigger trigger) {
+
     }
 
     @Override
     public void triggerComplete(Trigger trigger, JobExecutionContext context, Trigger.CompletedExecutionInstruction triggerInstructionCode) {
+        MDC.clear();
     }
 }

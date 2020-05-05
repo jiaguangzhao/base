@@ -1,6 +1,6 @@
-package com.example.base.configure;
+package com.example.base.aop.configure;
 
-import com.example.base.interceptor.MybatisPrintSqlInterceptor;
+import com.example.base.aop.MybatisPrintSqlInterceptor;
 import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,15 +19,7 @@ public class NoApplicationTests {
 
     @Test
     public void test001(){
-        String fileName = "D:\\work\\baiwang\\勾选发票列表.xlsx";
-        String templateFileName = "D:\\work\\baiwang\\taxReturnDeductTemplate.xlsx";
-        List<ExcelModel> data = new ArrayList<>();
-        ExcelModel excelModel1 = new ExcelModel();
-        excelModel1.setId("100001");
-        excelModel1.setUsername("贾");
-        excelModel1.setEmail("295669145@qq.com");
-        data.add(excelModel1);
-        EasyExcel.write(fileName).withTemplate(templateFileName).sheet().doWrite(data);
+
     }
 
     @Test
