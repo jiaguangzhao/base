@@ -36,6 +36,9 @@ public class XxlJobConfiguration {
     @Value("${xxl.job.executor.logretentiondays}")
     private int logRetentionDays;
 
+    public XxlJobConfiguration() {
+    }
+
 
     @Bean
     public XxlJobSpringExecutor xxlJobExecutor() {

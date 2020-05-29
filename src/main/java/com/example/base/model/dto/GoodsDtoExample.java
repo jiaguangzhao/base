@@ -6,11 +6,12 @@ import java.util.Date;
 import java.util.List;
 
 public class GoodsDtoExample {
-    protected String orderByClause;
 
-    protected boolean distinct;
+    private String orderByClause;
 
-    protected List<Criteria> oredCriteria;
+    private boolean distinct;
+
+    private List<Criteria> oredCriteria;
 
     public GoodsDtoExample() {
         oredCriteria = new ArrayList<>();
@@ -66,10 +67,9 @@ public class GoodsDtoExample {
     }
 
     protected abstract static class GeneratedCriteria {
-        protected List<Criterion> criteria;
+        private List<Criterion> criteria;
 
         protected GeneratedCriteria() {
-            super();
             criteria = new ArrayList<>();
         }
 
@@ -94,7 +94,7 @@ public class GoodsDtoExample {
 
         protected void addCriterion(String condition, Object value, String property) {
             if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
+                throw new RuntimeException("Value for " + property + " cannot be null.");
             }
             criteria.add(new Criterion(condition, value));
         }
@@ -3119,7 +3119,7 @@ public class GoodsDtoExample {
 
     public static class Criteria extends GeneratedCriteria {
         protected Criteria() {
-            super();
+
         }
     }
 
@@ -3139,6 +3139,39 @@ public class GoodsDtoExample {
         private boolean listValue;
 
         private String typeHandler;
+
+        protected Criterion(String condition) {
+            this.condition = condition;
+            this.typeHandler = null;
+            this.noValue = true;
+        }
+
+        protected Criterion(String condition, Object value, String typeHandler) {
+            this.condition = condition;
+            this.value = value;
+            this.typeHandler = typeHandler;
+            if (value instanceof List<?>) {
+                this.listValue = true;
+            } else {
+                this.singleValue = true;
+            }
+        }
+
+        protected Criterion(String condition, Object value) {
+            this(condition, value, null);
+        }
+
+        protected Criterion(String condition, Object value, Object secondValue, String typeHandler) {
+            this.condition = condition;
+            this.value = value;
+            this.secondValue = secondValue;
+            this.typeHandler = typeHandler;
+            this.betweenValue = true;
+        }
+
+        protected Criterion(String condition, Object value, Object secondValue) {
+            this(condition, value, secondValue, null);
+        }
 
         public String getCondition() {
             return condition;
@@ -3172,40 +3205,6 @@ public class GoodsDtoExample {
             return typeHandler;
         }
 
-        protected Criterion(String condition) {
-            super();
-            this.condition = condition;
-            this.typeHandler = null;
-            this.noValue = true;
-        }
 
-        protected Criterion(String condition, Object value, String typeHandler) {
-            super();
-            this.condition = condition;
-            this.value = value;
-            this.typeHandler = typeHandler;
-            if (value instanceof List<?>) {
-                this.listValue = true;
-            } else {
-                this.singleValue = true;
-            }
-        }
-
-        protected Criterion(String condition, Object value) {
-            this(condition, value, null);
-        }
-
-        protected Criterion(String condition, Object value, Object secondValue, String typeHandler) {
-            super();
-            this.condition = condition;
-            this.value = value;
-            this.secondValue = secondValue;
-            this.typeHandler = typeHandler;
-            this.betweenValue = true;
-        }
-
-        protected Criterion(String condition, Object value, Object secondValue) {
-            this(condition, value, secondValue, null);
-        }
     }
 }

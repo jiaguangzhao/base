@@ -1,13 +1,16 @@
 package com.example.base.aop;
 
-import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.mapping.ParameterMode;
-import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
@@ -32,6 +35,12 @@ import java.util.regex.Matcher;
                 @Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})
         })
 public class MybatisPrintSqlInterceptor implements Interceptor {
+
+    private static final String SINGLE_QUOTATION = "'";
+
+    public MybatisPrintSqlInterceptor() {
+    }
+
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
@@ -98,9 +107,9 @@ public class MybatisPrintSqlInterceptor implements Interceptor {
         String result;
         if (propertyValue != null) {
             if (propertyValue instanceof String) {
-                result = "'" + propertyValue + "'";
+                result = SINGLE_QUOTATION + propertyValue + SINGLE_QUOTATION;
             } else if (propertyValue instanceof Date) {
-                result = "'" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(propertyValue) + "'";
+                result = SINGLE_QUOTATION + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(propertyValue) + SINGLE_QUOTATION;
             } else {
                 result = propertyValue.toString();
             }

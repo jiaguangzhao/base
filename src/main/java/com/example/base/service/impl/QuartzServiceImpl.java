@@ -23,17 +23,23 @@ import java.util.List;
 @Slf4j
 public class QuartzServiceImpl implements QuartzService {
 
+    private static final int PAGE_NUM = 1;
+    private static final int PAGE_SIZE = 20;
+
     @Autowired
     private Scheduler scheduler;
 
     @Autowired
     private QrtzTriggerDtoMapper qrtzTriggerDtoMapper;
 
+    public QuartzServiceImpl() {
+    }
+
     @Override
     public List<QrtzTriggerDto> selectAll() {
 //        String uuid = UUID.randomUUID().toString();
         log.info("service:{}, selectAll()....");
-        PageHelper.startPage(1, 20);
+        PageHelper.startPage(PAGE_NUM, PAGE_SIZE);
         return qrtzTriggerDtoMapper.selectAll();
     }
 

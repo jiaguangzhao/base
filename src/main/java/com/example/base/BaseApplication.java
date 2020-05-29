@@ -12,8 +12,14 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan(value = "com.example.base.dao")
 public class BaseApplication {
 
+    public BaseApplication() {
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(BaseApplication.class, args);
     }
 
+    public String hideUtilityClass(){
+        return "hideUtilityClass";
+    }
 }

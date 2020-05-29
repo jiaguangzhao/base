@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @CacheConfig(cacheNames = "cache_express")
 public interface ExpressMapper {
 
-    @Cacheable
+    @Cacheable(key = "#id")
     ExpressDto selectById(Long id);
 
     @CachePut(key = "#express.id")

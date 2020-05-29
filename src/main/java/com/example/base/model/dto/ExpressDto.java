@@ -14,9 +14,13 @@ import java.io.Serializable;
 @Alias("express")
 public class ExpressDto implements Serializable {
 
+
     private Long id;
 
     private String expressCode;
 
     private String expressName;
+
+    public ExpressDto() {
+    }
 }

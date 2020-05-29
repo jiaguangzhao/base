@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!-- This is a checkstyle configuration file. For descriptions of
+what the following rules do, please see the checkstyle configuration
+page at http://checkstyle.sourceforge.net/config.html -->
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="fileExtensions" value="java, xml, properties, yml"/>
+    <!-- 不需要 package-info.java -->
+    <!-- <module name="JavadocPackage"/> -->
+
+    <module name="TreeWalker">
+        <!--检查使用*表示的import语句-->
+        <module name="AvoidStarImport"/>
+        <!-- 检查常量的标识符 -->
+        <module name="ConstantName"/>
+        <!-- 检查空的块。不验证顺序。可以通过tokens指定验证内容：如try，switch等。 -->
+        <module name="EmptyBlock"/>
+        <!-- 方法长度 默认150 -->
+        <module name="MethodLength"/>
+        <!-- 注解 -->
+        <module name="AnnotationLocation"/>
+        <module name="MissingOverride"/>
+
+        <!-- 代码块检查 -->
+        <!-- 检查是否有嵌套代码块 -->
+        <module name="AvoidNestedBlocks"/>
+        <!-- 检查是否有空代码块 -->
+        <module name="EmptyBlock"/>
+        <!-- 检查空的catch块 -->
+        <module name="EmptyCatchBlock"/>
+        <!-- 检查左大括号位置 -->
+        <module name="LeftCurly"/>
+        <!-- 检查代码块是否缺失{} -->
+        <module name="NeedBraces"/>
+        <!-- 检查右大括号位置 -->
+        <module name="RightCurly"/>
+
+        <!-- 类设计检查 -->
+        <!-- 检查类是否为扩展设计l -->
+        <!-- <module name="DesignForExtension"/> -->
+        <!-- 检查只有private构造函数的类是否声明为final -->
+        <module name="FinalClass"/>
+        <!-- 检查工具类是否有public的构造器 -->
+        <module name="HideUtilityClassConstructor"/>
+        <!-- 最后声明内部类型 -->
+        <module name="InnerTypeLast"/>
+        <!-- 检查接口是否仅定义类型
+        检查接口是否只定义了变量而没有定义方法，因为接口应该用来描述一个类型，所以只定义变量而不定义方法是不恰当的
+         -->
+        <module name="InterfaceIsType"/>
+        <!-- 确保异常（异常类的名称必须匹配指定的正则表达式）是不可变的。也就是说，异常只能有final字段。 -->
+        <module name="MutableException"/>
+        <module name="OneTopLevelClass"/>
+        <!--<module name="ThrowsCount"/>-->
+        <!-- 检查类成员的可见性。只有static final的类成员可以是公有的，其他的类成员必须是私有的，除非设置了protectedAllowed属性或packageAllowed属性。 -->
+        <module name="VisibilityModifier">
+            <property name="packageAllowed" value="true"/>
+        </module>
+
+        <!-- 编码问题 -->
+        <!-- 检查数组初始化是否以逗号结束 -->
+        <module name="ArrayTrailingComma"/>
+        <!-- 避免双括弧初始化 8.30 版本 -->
+        <!-- <module name="AvoidDoubleBraceInitialization"/> -->
+        <!-- 避免内联条件语句 -->
+        <module name="AvoidInlineConditionals"/>
+        <!--  -->
+        <module name="AvoidNoArgumentSuperConstructorCall"/>
+        <!--
+        <module name="CovariantEquals"/>
+        -->
+        <!--
+        检查是否根据Java语言的代码约定，类或接口声明部分按照指定顺序出现。
+        1． 类（静态）变量。首先是public类变量，然后是protected，然后是package level（没有修饰符）最后是private。
+        2． 实例变量。首先是public类的变量，然后是protected，然后是package level（没有修饰符）最后是private。
+        3． 构造方法。
+        4． 方法。
+         -->
+        <module name="DeclarationOrder"/>
+        <!-- 检查default是否在switch语句中的所有情况之后。 -->
+        <module name="DefaultComesLast"/>
+        <!-- 检查空语句，只有分号。 -->
+        <module name="EmptyStatement"/>
+        <!-- 检查字符串使用equals比较是否在左侧。 -->
+        <module name="EqualsAvoidNull"/>
+        <!-- 检查如果重写equals()方法必须要求重写hashCode()方法。 -->
+        <module name="EqualsHashCode"/>
+<!--        <module name="ExplicitInitialization"/>-->
+        <!-- 检查switch语句中是否存在跨越分支。如果一个case分支的代码中缺少break、return、throw或continue语句，那么就会导致跨越分支。 -->
+        <module name="FallThrough"/>
+        <!-- 检查从未改变取值的局部变量是否被声明为final。这项检查还可以被配置为检查未修改过的参数是否被声明为final。 -->
+<!--        <module name="FinalLocalVariable"/>-->
+        <!-- 检查局部变量或参数是否会遮蔽在相同类中定义的字段。 -->
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true"/>
+            <property name="ignoreSetter" value="true"/>
+        </module>
+        <!-- 从不允许捕捉java.lang.Exception、java.lang.Error、java.lang.RuntimeException的行为。 -->
+<!--        <module name="IllegalCatch"/>-->
+        <!-- 检查是否有不合法的实例化操作，是否使用工厂方法更好。 -->
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.lang.Boolean"/>
+        </module>
+        <!-- 这项检查可以用来确保类型不能声明抛出指定的异常类型。从不允许声明抛出java.lang.Error或java.lang.RuntimeException。 -->
+        <module name="IllegalThrows"/>
+        <!-- 检查不合法的标记。 -->
+        <module name="IllegalToken"/>
+        <module name="IllegalTokenText"/>
+        <!-- 检查代码中是否有在变量声明、返回值、参数中都没有作为类型使用过的特定类。包括一种格式检查功能，默认情况下不允许抽象类。 -->
+        <module name="IllegalType"/>
+        <!-- 检查子表达式中是否有赋值语句，例如String s = Integer.toString(i = 2);。 -->
+        <module name="InnerAssignment"/>
+        <!-- 检查代码中是否含有“幻数”，幻数就是没有被定义为常量的数值文字。默认情况下，-1、0、1、2不会被认为是幻数。 -->
+        <module name="MagicNumber"/>
+        <!-- 检查构造器 -->
+        <module name="MissingCtor"/>
+        <!-- 检查switch语句是否含有default子句。 -->
+        <module name="MissingSwitchDefault"/>
+        <!-- 如果在循环体中修改了控制变量，程序流程就会变得更加难以跟踪。可以用while循环替换for循环。 -->
+        <module name="ModifiedControlVariable"/>
+        <!-- 检查在单个文件中，相同的字符串常量是否出现了多次。 -->
+        <module name="MultipleStringLiterals">
+            <property name="ignoreStringsRegexp"
+                      value='^(("")|(", ")|("/\*"))$'/>
+        </module>
+    </module>
+
+</module>

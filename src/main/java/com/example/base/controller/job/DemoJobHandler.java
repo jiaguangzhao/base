@@ -21,20 +21,23 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class DemoJobHandler {
 
+
     @Autowired
     private ExpressService expressService;
 
+    public DemoJobHandler() {
+    }
     /**
      * 1、简单任务示例（Bean模式）
      */
     @XxlJob("demoJobHandler")
     public ReturnT<String> demoJobHandler(String param) throws Exception {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        for (int i = 0; i < 5; i++) {
-            log.info("我了个DJ：time【{}】i【{}】。", localDateTime, i);
-            expressService.selectById(Long.valueOf(i));
-            TimeUnit.SECONDS.sleep(5);
-        }
+//        LocalDateTime localDateTime = LocalDateTime.now();
+//        for (int i = 0; i < 5; i++) {
+//            log.info("我了个DJ：time【{}】i【{}】。", localDateTime, i);
+//            expressService.selectById(Long.valueOf(i));
+//            TimeUnit.SECONDS.sleep(5);
+//        }
         return ReturnT.SUCCESS;
     }
 
@@ -44,19 +47,19 @@ public class DemoJobHandler {
      */
     @XxlJob("demoJobHandler02")
     public ReturnT<String> demoJobHandler02(String param) throws Exception {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        for (int i = 0; i < 5; i++) {
-            log.info("什么：time【{}】i【{}】。", localDateTime, i);
-            TimeUnit.SECONDS.sleep(3);
-        }
-        int i = new Random().nextInt(100);
-        log.info("随机i={}.", i);
-        if (i < 20) {
-            int j = 0;
-            j = i / j;
-        } else if (i < 40) {
-            return new ReturnT<>(i, "我爱你吗：" + i);
-        }
+//        LocalDateTime localDateTime = LocalDateTime.now();
+//        for (int i = 0; i < 5; i++) {
+//            log.info("什么：time【{}】i【{}】。", localDateTime, i);
+//            TimeUnit.SECONDS.sleep(3);
+//        }
+//        int i = new Random().nextInt(100);
+//        log.info("随机i={}.", i);
+//        if (i < 20) {
+//            int j = 0;
+//            j = i / j;
+//        } else if (i < 40) {
+//            return new ReturnT<>(i, "我爱你吗：" + i);
+//        }
         return ReturnT.SUCCESS;
     }
 }

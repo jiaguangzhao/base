@@ -15,6 +15,9 @@ import java.util.UUID;
  */
 public class FillTraceIdInterceptor implements HandlerInterceptor {
 
+    public FillTraceIdInterceptor() {
+    }
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 

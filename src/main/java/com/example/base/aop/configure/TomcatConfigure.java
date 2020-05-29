@@ -18,6 +18,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TomcatConfigure {
 
+    private static final String USER_CONSTRAINT = "NONE";
+    private static final String FILTER_NAME = "httpHeaderSecurity";
+
+
+
+
+    public TomcatConfigure() {
+    }
+
     @Bean
     public ConfigurableServletWebServerFactory servletContainer(){
         TomcatServletWebServerFactory tomcatServletWebServerFactory
@@ -50,7 +59,7 @@ public class TomcatConfigure {
 
             securityConstraint.addCollection(securityCollection);
             securityConstraint.setAuthConstraint(true);
-            securityConstraint.setUserConstraint("NONE");
+            securityConstraint.setUserConstraint(USER_CONSTRAINT);
 
             context.addConstraint(securityConstraint);
             context.setUseHttpOnly(true);
@@ -61,21 +70,21 @@ public class TomcatConfigure {
             //url匹配表达式
             noneSecurityCollection.addPattern("/*");
             noneSecurityConstraint.addCollection(noneSecurityCollection);
-            noneSecurityConstraint.setUserConstraint("NONE");
+            noneSecurityConstraint.setUserConstraint(USER_CONSTRAINT);
             context.addConstraint(noneSecurityConstraint);
 
             FilterDef httpHeaderSecurityFilter = new FilterDef();
-            httpHeaderSecurityFilter.setFilterName("httpHeaderSecurity");
+            httpHeaderSecurityFilter.setFilterName(FILTER_NAME);
             httpHeaderSecurityFilter.setFilterClass("org.apache.catalina.filters.HttpHeaderSecurityFilter");
-            httpHeaderSecurityFilter.addInitParameter("antiClickJackingEnabled", "true");
+            httpHeaderSecurityFilter.addInitParameter("antiClickJackingEnabled", String.valueOf(Boolean.TRUE));
             // <!-- 允许被嵌入到其它页面的方式，默认是DENY -->
             httpHeaderSecurityFilter.addInitParameter("antiClickJackingOption", "DENY");
-            httpHeaderSecurityFilter.addInitParameter("xssProtectionEnabled", "true");
-            httpHeaderSecurityFilter.addInitParameter("blockContentTypeSniffingEnabled", "true");
-            httpHeaderSecurityFilter.setAsyncSupported("true");
+            httpHeaderSecurityFilter.addInitParameter("xssProtectionEnabled", String.valueOf(Boolean.TRUE));
+            httpHeaderSecurityFilter.addInitParameter("blockContentTypeSniffingEnabled", String.valueOf(Boolean.TRUE));
+            httpHeaderSecurityFilter.setAsyncSupported(String.valueOf(Boolean.TRUE));
 
             FilterMap httpHeaderSecurityFilterMap = new FilterMap();
-            httpHeaderSecurityFilterMap.setFilterName("httpHeaderSecurity");
+            httpHeaderSecurityFilterMap.setFilterName(FILTER_NAME);
             httpHeaderSecurityFilterMap.addURLPattern("/*");
             httpHeaderSecurityFilterMap.setDispatcher("REQUEST");
 

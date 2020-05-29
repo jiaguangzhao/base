@@ -3,7 +3,10 @@ package com.example.base.aop;
 import ch.qos.logback.classic.pattern.MessageConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.flowable.task.service.impl.persistence.entity.TaskEntity;
+import org.flowable.task.service.impl.persistence.entity.TaskEntityImpl;
 import org.slf4j.helpers.MessageFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,8 +20,12 @@ import java.util.stream.Stream;
  */
 public class LogbackMessageConverter extends MessageConverter {
 
+
     @Autowired
     private ObjectMapper objectMapper;
+
+    public LogbackMessageConverter() {
+    }
 
     @Override
     public String convert(ILoggingEvent event) {
@@ -44,7 +51,11 @@ public class LogbackMessageConverter extends MessageConverter {
                             return o;
                         } else {
 //                            objectMapper.writeValueAsString(o)
-                            return JSONObject.toJSONString(o);
+//                            return o.toString();
+                            if (o instanceof TaskEntity) {
+                                return o.toString();
+                            }
+                            return JSONObject.toJSONString(o, SerializerFeature.DisableCircularReferenceDetect);
                         }
                     }).toArray()).getMessage();
             return message;

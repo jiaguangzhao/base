@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenFeignConfiguration {
 
+    public OpenFeignConfiguration() {
+    }
+
     @Bean
     Logger.Level feignLoggerLevel(){
         return Logger.Level.FULL;

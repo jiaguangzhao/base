@@ -5,6 +5,7 @@ import com.example.base.model.dto.ExpressDto;
 import com.example.base.service.ExpressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @description:
@@ -17,7 +18,11 @@ public class ExpressServiceImpl implements ExpressService {
     @Autowired
     private ExpressMapper expressMapper;
 
+    public ExpressServiceImpl() {
+    }
+
     @Override
+    @Transactional
     public ExpressDto selectById(Long id) {
         return expressMapper.selectById(id);
     }

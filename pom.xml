@@ -18,7 +18,6 @@
         <java.version>1.8</java.version>
         <spring-boot-admin.version>2.2.1</spring-boot-admin.version>
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
-        <spring-platform.version>Cairo-SR7</spring-platform.version>
         <spring.version>5.2.4</spring.version>
         <okhttp3.version>4.4.1</okhttp3.version>
     </properties>
@@ -195,6 +194,20 @@
             <version>0.1.3.RELEASE</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.flowable/flowable-spring-boot-starter-process -->
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-process</artifactId>
+            <version>6.5.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itext7-core -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>7.1.0</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -218,6 +231,7 @@
     </dependencyManagement>
 
     <repositories>
+        <!--
         <repository>
             <id>nexus</id>
             <name>baiwang-nexus</name>
@@ -225,11 +239,12 @@
             <releases>
                 <enabled>true</enabled>
             </releases>
-            <!--snapshots默认是关闭的,需要开启  -->
+            snapshots默认是关闭的,需要开启
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+    -->
     </repositories>
 
     <build>
@@ -258,6 +273,28 @@
                         <scope>runtime</scope>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <!-- http://maven.apache.org/plugins/maven-checkstyle-plugin/history.html -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <configLocation>${basedir}/src/main/resources/google_checks.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>false</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

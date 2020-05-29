@@ -24,8 +24,12 @@ import java.util.List;
 @RequestMapping(path = "/quartz")
 public class QuartzController {
 
+
     @Autowired
     private QuartzService quartzService;
+
+    public QuartzController() {
+    }
 
     @GetMapping(value = {"/triggers"})
     @ResponseBody

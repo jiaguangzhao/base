@@ -19,6 +19,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Slf4j
 public class Swagger2Configuration {
 
+    public Swagger2Configuration() {
+    }
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)

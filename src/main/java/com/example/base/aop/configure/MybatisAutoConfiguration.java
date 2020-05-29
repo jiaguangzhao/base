@@ -25,6 +25,9 @@ public class MybatisAutoConfiguration {
     @Autowired
     private List<SqlSessionFactory> sqlSessionFactoryList;
 
+    public MybatisAutoConfiguration() {
+    }
+
     @PostConstruct
     public void addPageInterceptor() {
         MybatisPrintSqlInterceptor interceptor = new MybatisPrintSqlInterceptor();

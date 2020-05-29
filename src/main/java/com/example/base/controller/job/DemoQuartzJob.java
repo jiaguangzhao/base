@@ -34,6 +34,9 @@ public class DemoQuartzJob extends QuartzJobBean {
     @Autowired
     private QuartzService quartzService;
 
+    public DemoQuartzJob() {
+    }
+
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         quartzService.selectAll();
